@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobile-harness.dev/contracts/project-profile.schema.json",
+  "title": "Project Profile",
+  "type": "object",
+  "required": ["schema_version", "project", "adapter", "paths", "commands", "unknowns"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "project": {
+      "type": "object",
+      "required": ["name", "root", "platform"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "root": {"type": "string", "minLength": 1},
+        "platform": {"enum": ["ios", "android", "flutter", "react-native", "unknown"]},
+        "languages": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "adapter": {"type": "string", "minLength": 1},
+    "paths": {
+      "type": "object",
+      "required": ["sources", "tests"],
+      "properties": {
+        "sources": {"type": "array", "items": {"type": "string"}},
+        "tests": {"type": "array", "items": {"type": "string"}},
+        "generated": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "commands": {
+      "type": "object",
+      "required": ["build_app"],
+      "additionalProperties": {
+        "type": "array",
+        "items": {"type": "string"},
+        "minItems": 1
+      }
+    },
+    "command_providers": {"type": "object", "additionalProperties": {"type": "string"}},
+    "conventions": {"type": "array", "items": {"type": "string"}},
+    "capabilities": {"type": "object", "additionalProperties": {"type": "string"}},
+    "freshness": {"type": "object"},
+    "unknowns": {"type": "array", "items": {"type": "object"}}
+  }
+}

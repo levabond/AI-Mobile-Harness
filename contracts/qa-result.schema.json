@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobile-harness.dev/contracts/qa-result.schema.json",
+  "title": "QA Result",
+  "type": "object",
+  "required": ["schema_version", "work_item_id", "status", "scenarios", "defects", "residual_risk"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "work_item_id": {"type": "string"},
+    "status": {"enum": ["passed", "failed", "not_run"]},
+    "scenarios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "status"],
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "status": {"enum": ["passed", "failed", "skipped", "not_run"]},
+          "evidence": {"type": "string"},
+          "reason": {"type": "string"}
+        }
+      }
+    },
+    "defects": {"type": "array", "items": {"type": "object"}},
+    "residual_risk": {"type": "array", "items": {"type": "string"}}
+  }
+}
+

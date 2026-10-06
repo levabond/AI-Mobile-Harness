@@ -1,0 +1,5 @@
+#!/usr/bin/env python3
+from mobile_harness.cli import main
+
+raise SystemExit(main())
+

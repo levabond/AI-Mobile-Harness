@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobile-harness.dev/contracts/final-report.schema.json",
+  "title": "Final Report",
+  "type": "object",
+  "required": ["schema_version", "work_item_id", "decision", "methodology", "stage_status", "evidence", "findings", "unresolved_risks"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "work_item_id": {"type": "string"},
+    "decision": {"enum": ["ready", "ready_with_accepted_risk", "changes_requested", "blocked", "approval_required"]},
+    "methodology": {
+      "type": "object",
+      "required": ["rnd", "verification", "build_provider"],
+      "properties": {
+        "rnd": {"const": "superpowers:brainstorming"},
+        "verification": {"const": "superpowers:verification-before-completion"},
+        "build_provider": {"type": "string", "minLength": 1}
+      }
+    },
+    "stage_status": {"type": "object", "additionalProperties": {"type": "string"}},
+    "evidence": {"type": "array", "items": {"type": "string"}},
+    "findings": {"type": "array", "items": {"type": "object"}},
+    "unresolved_risks": {"type": "array", "items": {"type": "string"}}
+  }
+}

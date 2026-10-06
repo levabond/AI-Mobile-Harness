@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "name": "hotfix",
+  "rnd": "incident",
+  "planning": "targeted",
+  "verification": {"required": ["build", "unit_tests", "acceptance_criteria"], "allow_unsupported": []},
+  "review": "mandatory",
+  "qa": "reproduce_then_smoke",
+  "rollout": "guarded",
+  "evidence_retention": "full"
+}
+

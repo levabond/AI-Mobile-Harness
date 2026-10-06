@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "name": "dependencies",
+  "addition_requires_approval": true,
+  "required_assessment": ["existing_capability", "maintenance", "security", "license"],
+  "lockfile_changes_require_manifest_change": true
+}
+

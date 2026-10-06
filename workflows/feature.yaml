@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "name": "feature",
+  "description": "End-to-end workflow for a user-facing mobile feature.",
+  "stages": [
+    {"id": "discovery", "skill": "discover-mobile-project", "depends_on": [], "artifacts": ["context/project-profile.yaml"]},
+    {"id": "rnd", "methodology": "superpowers:brainstorming", "skill": "discover-mobile-feature", "depends_on": ["discovery"], "artifacts": ["rnd/feature-brief.yaml", "rnd/acceptance-criteria.yaml", "rnd/methodology.yaml"]},
+    {"id": "plan", "skill": "plan-mobile-change", "depends_on": ["rnd"], "artifacts": ["plan/implementation-plan.yaml"]},
+    {"id": "dev", "skill": "implement-mobile-feature", "depends_on": ["plan"], "artifacts": ["dev/development-summary.md", "dev/deviations.yaml"]},
+    {"id": "verify", "methodology": "superpowers:verification-before-completion", "failure_methodology": "superpowers:systematic-debugging", "tool_provider": "MobileBuildMCP", "skill": "verify-mobile-change", "depends_on": ["dev"], "artifacts": ["verification/result.yaml"]},
+    {"id": "review", "skill": "review-mobile-change", "depends_on": ["dev"], "artifacts": ["review/result.yaml"]},
+    {"id": "qa", "skill": "qa-mobile-feature", "depends_on": ["verify"], "artifacts": ["qa/result.yaml"]},
+    {"id": "final", "depends_on": ["verify", "review", "qa"], "artifacts": ["final-report.yaml", "final-report.md"]}
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "methodology": {
+    "rnd": {
+      "framework": "superpowers",
+      "process": "superpowers:brainstorming",
+      "classification": "bounded",
+      "approval": {
+        "status": "approved",
+        "evidence": "The checked-in fixture specification is the approved design for this deterministic eval."
+      }
+    }
+  },
+  "feature_brief": {
+    "problem": "A signed-in user cannot inspect their complete profile from the app.",
+    "user": "Signed-in mobile application user",
+    "value": "The user can open Profile Details and understand whether data is loading, available, or temporarily unavailable.",
+    "scope": {
+      "in": ["Profile Details screen", "profile route", "loading/content/error states", "retry", "preview", "state and screen contract tests"],
+      "out": ["profile editing", "offline persistence", "analytics taxonomy", "production API transport"]
+    },
+    "states": ["loading", "content", "error", "retry"],
+    "integrations": ["Profile route", "SwiftUI screen contract"],
+    "uncertainties": [
+      {"question": "Production API transport is outside this isolated fixture.", "status": "deferred", "resolution": "Inject ProfileLoading so the host app owns transport."}
+    ]
+  },
+  "acceptance_criteria": [
+    {
+      "id": "AC-001",
+      "given": "Profile Details is created",
+      "when": "no response has completed",
+      "then": "the feature exposes a loading state",
+      "priority": "must",
+      "evidence": ["check:unit_tests"]
+    },
+    {
+      "id": "AC-002",
+      "given": "profile loading succeeds",
+      "when": "the response is received",
+      "then": "name, handle, and biography are represented as content",
+      "priority": "must",
+      "evidence": ["check:unit_tests"]
+    },
+    {
+      "id": "AC-003",
+      "given": "profile loading fails",
+      "when": "the user retries and the next request succeeds",
+      "then": "the error recovers to content",
+      "priority": "must",
+      "evidence": ["check:unit_tests"]
+    },
+    {
+      "id": "AC-004",
+      "given": "the host app navigates to Profile Details",
+      "when": "it uses the registered route",
+      "then": "the stable route value is profile-details and every screen state compiles",
+      "priority": "must",
+      "evidence": ["check:build", "check:unit_tests"]
+    }
+  ],
+  "plan": {
+    "design": "Use an injected async loader, a MainActor state owner, a value-type state enum, a stable route, and a presentation-only SwiftUI screen.",
+    "modules": ["ProfileFeature", "ProfileFeatureTests"],
+    "expected_files": [
+      "Sources/ProfileFeature/Profile.swift",
+      "Sources/ProfileFeature/ProfileDetailsState.swift",
+      "Sources/ProfileFeature/ProfileDetailsViewModel.swift",
+      "Sources/ProfileFeature/ProfileRoute.swift",
+      "Sources/ProfileFeature/ProfileDetailsScreen.swift",
+      "Tests/ProfileFeatureTests/ProfileDetailsViewModelTests.swift"
+    ],
+    "steps": [
+      {"id": "STEP-001", "description": "Add the profile model, loader boundary, state, and transitions.", "acceptance_criteria": ["AC-001", "AC-002", "AC-003"]},
+      {"id": "STEP-002", "description": "Add the route and SwiftUI screen for all required states.", "acceptance_criteria": ["AC-004"]},
+      {"id": "STEP-003", "description": "Add retry, route, and screen construction tests.", "acceptance_criteria": ["AC-001", "AC-002", "AC-003", "AC-004"]}
+    ],
+    "scope": {
+      "allowed_modules": ["ProfileFeature", "ProfileFeatureTests"],
+      "protected_paths": [".git", "Generated", "Vendor", "Secrets"],
+      "expected_file_changes": 6,
+      "max_file_changes_without_replan": 12
+    },
+    "verification": ["build", "lint", "unit_tests", "acceptance_criteria"],
+    "rollback": "Remove ProfileFeature and its route from the host integration in one revert.",
+    "risks": [
+      {"id": "RISK-001", "factor": "async_state", "mitigation": "MainActor ownership and deterministic transition tests"}
+    ]
+  },
+  "qa_scenarios": [
+    {"id": "QA-001", "name": "Initial loading state", "evidence": "check:unit_tests"},
+    {"id": "QA-002", "name": "Successful content state", "evidence": "check:unit_tests"},
+    {"id": "QA-003", "name": "Error and retry recovery", "evidence": "check:unit_tests"},
+    {"id": "QA-004", "name": "Stable route and constructible screen states", "evidence": "check:unit_tests"}
+  ],
+  "residual_risk": ["The Swift Package fixture does not launch an iOS Simulator or execute XCUITest; host-app navigation and visual rendering require integration QA."]
+}

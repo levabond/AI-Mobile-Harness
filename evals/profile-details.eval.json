@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "name": "profile-details",
+  "prompt": "Add a production-ready Profile Details screen with loading, content, error, retry, route, preview, and tests.",
+  "fixture": "evals/fixtures/ios-small-clean",
+  "request": "examples/profile-details-request.yaml",
+  "checks": [
+    "project discovery selects ios-xcode with Swift Package fallback",
+    "R&D follows superpowers:brainstorming and records bounded design approval",
+    "R&D produces schema-valid brief and acceptance criteria",
+    "plan maps every must criterion",
+    "expected screen, route, preview, and test files exist",
+    "Swift build succeeds with recorded exit code",
+    "swift-format lint succeeds with recorded exit code",
+    "XCTest succeeds with recorded exit code",
+    "verification follows superpowers:verification-before-completion",
+    "acceptance criteria link to recorded checks",
+    "review has no blocking findings",
+    "QA scenarios pass and simulator limitation is residual risk",
+    "final decision is ready_with_accepted_risk"
+  ]
+}

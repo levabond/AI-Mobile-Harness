@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "name": "prototype",
+  "rnd": "light",
+  "planning": "light",
+  "verification": {"required": ["build", "unit_tests", "acceptance_criteria"], "allow_unsupported": []},
+  "review": "light",
+  "qa": "smoke",
+  "evidence_retention": "minimal"
+}
+

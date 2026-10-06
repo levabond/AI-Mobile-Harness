@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "project": {
+    "name": "ios-small-clean",
+    "platform": "ios",
+    "adapter": "ios-xcode",
+    "default_profile": "standard"
+  },
+  "context": {"source": ".mobile-harness/context/project-profile.yaml"},
+  "integrations": {
+    "methodology": {
+      "provider": "superpowers",
+      "contract": "integrations/superpowers.yaml",
+      "required_for": ["rnd", "verification"]
+    },
+    "mobile_build": {
+      "provider": "native-swift",
+      "enabled": false,
+      "reason": "Hermetic fixture mode avoids network/package installation; production projects default to MobileBuildMCP."
+    }
+  },
+  "workflows": {
+    "feature": "workflows/feature.yaml",
+    "bugfix": "workflows/bugfix.yaml",
+    "hotfix": "workflows/hotfix.yaml"
+  },
+  "profiles": {
+    "prototype": "profiles/prototype.yaml",
+    "standard": "profiles/standard.yaml",
+    "strict": "profiles/strict.yaml",
+    "hotfix": "profiles/hotfix.yaml"
+  },
+  "policies": [],
+  "gates": {"require_clean_build": true, "require_tests": true, "require_review": true},
+  "human_approval": {"required_for": ["add_external_dependency", "public_api_change", "data_migration", "privacy_behavior_change", "release"]}
+}

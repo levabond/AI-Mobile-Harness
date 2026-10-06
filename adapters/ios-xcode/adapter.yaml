@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "name": "ios-xcode",
+  "platform": "ios",
+  "build_provider": "MobileBuildMCP",
+  "hermetic_fallback": "native-swift",
+  "detect": ["*.xcworkspace", "*.xcodeproj", "Package.swift"],
+  "capabilities": {
+    "detect_project": "supported",
+    "describe_project": "supported",
+    "resolve_targets": "supported",
+    "build_app": "supported",
+    "build_tests": "supported",
+    "run_unit_tests": "supported",
+    "run_integration_tests": "unsupported",
+    "run_ui_tests": "experimental",
+    "run_lint": "supported",
+    "run_format_check": "supported",
+    "launch_device": "supported",
+    "install_app": "supported",
+    "open_route": "experimental",
+    "capture_screenshot": "supported",
+    "collect_logs": "supported",
+    "list_localizations": "supported",
+    "inspect_accessibility": "experimental",
+    "clean_generated_artifacts": "supported"
+  }
+}

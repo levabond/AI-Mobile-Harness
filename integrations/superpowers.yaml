@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "name": "superpowers",
+  "source": "https://github.com/obra/superpowers",
+  "license": "MIT",
+  "tested_version": "6.4.2",
+  "required_for": {
+    "rnd": {
+      "process": "superpowers:brainstorming",
+      "gate": "explicit_design_approval",
+      "classifications": ["spike", "bounded", "architectural"]
+    },
+    "verification": {
+      "process": "superpowers:verification-before-completion",
+      "failure_process": "superpowers:systematic-debugging",
+      "gate": "fresh_evidence_before_claims"
+    }
+  },
+  "vendored": false
+}
+

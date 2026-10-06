@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobile-harness.dev/contracts/feature-brief.schema.json",
+  "title": "Feature Brief",
+  "type": "object",
+  "required": ["schema_version", "work_item_id", "methodology", "problem", "user", "value", "scope", "states", "integrations", "uncertainties"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "work_item_id": {"type": "string"},
+    "methodology": {
+      "type": "object",
+      "required": ["framework", "process", "classification", "approval"],
+      "properties": {
+        "framework": {"const": "superpowers"},
+        "process": {"const": "superpowers:brainstorming"},
+        "classification": {"enum": ["spike", "bounded", "architectural"]},
+        "approval": {
+          "type": "object",
+          "required": ["status", "evidence"],
+          "properties": {
+            "status": {"enum": ["approved", "required"]},
+            "evidence": {"type": "string"}
+          }
+        }
+      }
+    },
+    "problem": {"type": "string", "minLength": 1},
+    "user": {"type": "string", "minLength": 1},
+    "value": {"type": "string", "minLength": 1},
+    "scope": {
+      "type": "object",
+      "required": ["in", "out"],
+      "properties": {
+        "in": {"type": "array", "items": {"type": "string"}},
+        "out": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "states": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "integrations": {"type": "array", "items": {"type": "string"}},
+    "uncertainties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["question", "status"],
+        "properties": {
+          "question": {"type": "string"},
+          "status": {"enum": ["blocking", "assumption", "deferred", "resolved"]},
+          "resolution": {"type": "string"}
+        }
+      }
+    }
+  }
+}

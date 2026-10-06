@@ -1,0 +1,3 @@
+interface:
+  display_name: "Review Mobile Change"
+  short_description: "Review a mobile diff with located risk findings"

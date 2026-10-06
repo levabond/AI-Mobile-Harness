@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "name": "default",
+  "max_retries_per_stage": 1,
+  "evidence_before_claims": true,
+  "redact_logs": true,
+  "forbid_generated_edits": true,
+  "require_explanation_for_skips": true
+}
+

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "name": "standard",
+  "rnd": "standard",
+  "planning": "standard",
+  "verification": {"required": ["build", "lint", "unit_tests", "acceptance_criteria"], "allow_unsupported": []},
+  "review": "full",
+  "qa": "risk_based",
+  "evidence_retention": "full"
+}
+

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Verify Mobile Change"
+  short_description: "Prove mobile build and test claims with evidence"

@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mobile-engineering-harness"
+version = "0.1.0"
+description = "Evidence-driven orchestration for AI-assisted mobile engineering"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [{name = "Mobile Engineering Harness contributors"}]
+dependencies = []
+
+[project.scripts]
+mobile-harness = "mobile_harness.cli:main"
+
+[tool.setuptools]
+packages = ["mobile_harness"]
+

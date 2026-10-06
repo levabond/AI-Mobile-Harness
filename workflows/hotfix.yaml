@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "name": "hotfix",
+  "description": "Targeted urgent repair with mandatory review and guarded delivery.",
+  "stages": [
+    {"id": "discovery", "depends_on": [], "artifacts": ["context/project-profile.yaml"]},
+    {"id": "rnd", "methodology": "superpowers:brainstorming", "depends_on": ["discovery"], "artifacts": ["rnd/feature-brief.yaml", "rnd/acceptance-criteria.yaml", "rnd/methodology.yaml"]},
+    {"id": "plan", "depends_on": ["rnd"], "artifacts": ["plan/implementation-plan.yaml"]},
+    {"id": "dev", "depends_on": ["plan"], "artifacts": ["dev/development-summary.md"]},
+    {"id": "verify", "methodology": "superpowers:verification-before-completion", "failure_methodology": "superpowers:systematic-debugging", "tool_provider": "MobileBuildMCP", "depends_on": ["dev"], "artifacts": ["verification/result.yaml"]},
+    {"id": "review", "depends_on": ["dev"], "artifacts": ["review/result.yaml"]},
+    {"id": "qa", "depends_on": ["verify"], "artifacts": ["qa/result.yaml"]},
+    {"id": "final", "depends_on": ["verify", "review", "qa"], "approval": "release", "artifacts": ["final-report.yaml", "final-report.md"]}
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "project": {
+    "name": "mobile-engineering-harness",
+    "platform": "auto",
+    "adapter": "auto",
+    "default_profile": "standard"
+  },
+  "context": {
+    "source": ".mobile-harness/context/project-profile.yaml",
+    "refresh_when": [
+      "project_configuration_changed",
+      "dependency_manifest_changed",
+      "module_structure_changed"
+    ]
+  },
+  "integrations": {
+    "methodology": {
+      "provider": "superpowers",
+      "contract": "integrations/superpowers.yaml",
+      "required_for": ["rnd", "verification"]
+    },
+    "mobile_build": {
+      "provider": "mobilebuildmcp",
+      "contract": "integrations/mobilebuildmcp.yaml",
+      "enabled": true,
+      "command": ["npx", "-y", "mobilebuildmcp@2.7.1"]
+    }
+  },
+  "workflows": {
+    "feature": "workflows/feature.yaml",
+    "bugfix": "workflows/bugfix.yaml",
+    "hotfix": "workflows/hotfix.yaml"
+  },
+  "profiles": {
+    "prototype": "profiles/prototype.yaml",
+    "standard": "profiles/standard.yaml",
+    "strict": "profiles/strict.yaml"
+  },
+  "policies": [
+    "policies/default.yaml",
+    "policies/dependency-policy.yaml",
+    "policies/protected-paths.yaml"
+  ],
+  "gates": {
+    "require_clean_build": true,
+    "require_tests": true,
+    "require_review": true,
+    "require_qa_for": ["user_visible_change", "navigation_change", "persistence_change"]
+  },
+  "human_approval": {
+    "required_for": [
+      "add_external_dependency",
+      "public_api_change",
+      "data_migration",
+      "privacy_behavior_change",
+      "release"
+    ]
+  }
+}

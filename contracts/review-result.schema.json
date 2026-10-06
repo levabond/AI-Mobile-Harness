@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobile-harness.dev/contracts/review-result.schema.json",
+  "title": "Review Result",
+  "type": "object",
+  "required": ["schema_version", "work_item_id", "status", "reviewed_scope", "findings"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "work_item_id": {"type": "string"},
+    "status": {"enum": ["passed", "changes_requested", "not_run"]},
+    "reviewed_scope": {"type": "array", "items": {"type": "string"}},
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "severity", "category", "file", "observation", "risk", "recommendation", "confidence", "blocking"],
+        "properties": {
+          "id": {"type": "string"},
+          "severity": {"enum": ["critical", "high", "medium", "low"]},
+          "category": {"type": "string"},
+          "file": {"type": "string"},
+          "line": {"type": "integer", "minimum": 1},
+          "observation": {"type": "string"},
+          "risk": {"type": "string"},
+          "recommendation": {"type": "string"},
+          "confidence": {"enum": ["high", "medium", "low"]},
+          "blocking": {"type": "boolean"}
+        }
+      }
+    }
+  }
+}
+

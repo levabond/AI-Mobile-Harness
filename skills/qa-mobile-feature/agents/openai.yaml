@@ -1,0 +1,3 @@
+interface:
+  display_name: "QA Mobile Feature"
+  short_description: "Run risk-based user-facing mobile QA"

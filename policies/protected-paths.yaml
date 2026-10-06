@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "name": "protected-paths",
+  "paths": [".git", "Generated", "Vendor", "Secrets", "*.entitlements"],
+  "on_violation": "approval_required"
+}
+

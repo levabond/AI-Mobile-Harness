@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "name": "strict",
+  "rnd": "full",
+  "planning": "approval_required",
+  "verification": {"required": ["clean_build", "static_analysis", "unit_tests", "integration_tests", "ui_tests", "acceptance_criteria"], "allow_unsupported": []},
+  "review": {"mode": "independent", "security": "required"},
+  "qa": {"mode": "regression", "device_matrix": "extended"},
+  "evidence_retention": "full"
+}
+

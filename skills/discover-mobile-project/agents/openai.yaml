@@ -1,0 +1,3 @@
+interface:
+  display_name: "Discover Mobile Project"
+  short_description: "Map a mobile repository into stable harness context"

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobile-harness.dev/contracts/verification-result.schema.json",
+  "title": "Verification Result",
+  "type": "object",
+  "required": ["schema_version", "work_item_id", "status", "profile", "methodology", "checks", "blocking_findings"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "work_item_id": {"type": "string"},
+    "status": {"enum": ["passed", "failed", "not_run"]},
+    "profile": {"type": "string"},
+    "methodology": {
+      "type": "object",
+      "required": ["framework", "process", "failure_process", "fresh_evidence"],
+      "properties": {
+        "framework": {"const": "superpowers"},
+        "process": {"const": "superpowers:verification-before-completion"},
+        "failure_process": {"const": "superpowers:systematic-debugging"},
+        "fresh_evidence": {"const": true}
+      }
+    },
+    "checks": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["status"],
+        "properties": {
+          "status": {"enum": ["passed", "failed", "skipped", "unsupported", "not_run"]},
+          "evidence": {"type": "string"},
+          "details": {"type": ["string", "object", "array"]}
+        }
+      }
+    },
+    "blocking_findings": {"type": "array", "items": {"type": "object"}}
+  }
+}
