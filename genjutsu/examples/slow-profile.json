@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "name": "slow-profile",
+  "description": "A successful profile response arrives after a visible delay.",
+  "network": {
+    "routes": [
+      {
+        "method": "GET",
+        "path": "/profile",
+        "response": {
+          "status": 200,
+          "delay_ms": 1500,
+          "headers": {
+            "Cache-Control": "no-store"
+          },
+          "body": {
+            "id": "user-1",
+            "name": "Demo User",
+            "plan": "pro"
+          }
+        }
+      }
+    ]
+  },
+  "device": {
+    "network": "slow-wifi",
+    "locale": "en-US"
+  },
+  "expected": {
+    "states": [
+      "loading",
+      "content"
+    ]
+  }
+}

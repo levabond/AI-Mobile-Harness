@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "name": "expired-session",
+  "description": "The user opens Profile with an expired session.",
+  "network": {
+    "routes": [
+      {
+        "method": "GET",
+        "path": "/profile",
+        "response": {
+          "status": 401,
+          "delay_ms": 300,
+          "body": {
+            "error": "session_expired",
+            "message": "Please sign in again."
+          }
+        }
+      }
+    ],
+    "default": {
+      "status": 404,
+      "body": {
+        "error": "not_configured"
+      }
+    }
+  },
+  "device": {
+    "network": "wifi",
+    "locale": "en-US"
+  },
+  "storage": {
+    "auth_token": "expired"
+  },
+  "identity": {
+    "status": "expired"
+  },
+  "expected": {
+    "screen": "login",
+    "events": [
+      "session_expired"
+    ]
+  }
+}

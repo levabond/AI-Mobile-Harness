@@ -25,6 +25,21 @@ This repository deliberately implements one small vertical slice:
 
 It does not include a second platform, automatic repair loops, a dashboard, release automation, multi-agent orchestration, or a general YAML parser. `.yaml` files use the JSON-compatible YAML 1.2 subset so the CLI works on Python 3.9 without downloads.
 
+## Genjutsu
+
+Genjutsu is a controlled-reality engine for mobile development and testing. It creates reproducible API mocks, failures, latency, and application states for development, QA, demos, and bug reproduction.
+
+Capabilities:
+
+- HTTP mocks from scenarios
+- Errors and response latency
+- Scenario validation
+- Active environment switching
+- Request evidence logging
+- Reproducible Dev and QA states
+
+See the [Genjutsu README](genjutsu/README.md) for setup, CLI usage, scenario examples, and architecture.
+
 ## Try the vertical slice
 
 Requirements: macOS with Xcode/Swift 6, Python 3.9+, and the Superpowers Codex plugin. Real project builds additionally use MobileBuildMCP through the checked-in Codex MCP configuration. `npx` requires Node.js 18+; a Homebrew/global `mobilebuildmcp` installation can be configured instead.
